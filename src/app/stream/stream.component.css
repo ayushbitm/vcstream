@@ -1,0 +1,13 @@
+#outer-screen{
+    height: 100vh;
+}
+
+#local_stream{
+    height: 320px;
+    width: 480px;
+}
+
+#remote_stream{
+    height: 320px;
+    width: 480px;
+}
