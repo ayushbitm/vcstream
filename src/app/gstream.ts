@@ -38,16 +38,16 @@ export class gstream {
           // Subscribe to a remote user.
           await this.client.subscribe(user, mediaType);
           console.log("subscribe success");
+          console.log("hello",user);
+          console.log("hello",mediaType);
     
           if (mediaType === "video") {
             const remoteVideoTrack = user.videoTrack;
-            const playerContainer = document.createElement("div");
+            // const playerContainer = document.createElement("div");
     
-            playerContainer.id = user.uid.toString();
-            playerContainer.style.width = "640px";
-            playerContainer.style.height = "480px";
-            document.getElementById('remote_stream')?.appendChild(playerContainer);
-            remoteVideoTrack?.play("playerContainer.id");
+            // playerContainer.id = user.uid.toString();
+            // document.getElementById('remote_stream')?.appendChild(playerContainer);
+            remoteVideoTrack?.play("remote_stream");
           }
     
           if (mediaType === "audio") {
@@ -56,9 +56,10 @@ export class gstream {
           }
         });
     
-        this.client.on("user-unpublished", (user: { uid: string; }) => {
-          const playerContainer = document.getElementById("remote_stream");
-          playerContainer?.remove();
+        this.client.on("user-unpublished", (user) => {
+          console.log("hello user unpublished ",user);
+          // const playerContainer = document.getElementById("remote_stream");
+          // playerContainer?.remove();
         });
     
         this.client.on("user-joined" ,async  (user : IAgoraRTCRemoteUser)  =>{

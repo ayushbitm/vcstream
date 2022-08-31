@@ -10,4 +10,6 @@
 #remote_stream{
     height: 320px;
     width: 480px;
+    transform: rotateY(180deg); 
 }
+

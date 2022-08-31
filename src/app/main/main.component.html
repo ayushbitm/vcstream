@@ -3,6 +3,6 @@
         <app-check-device (emitJoinChannel)="joinChannel()"></app-check-device>
     </div>
     <div [hidden]="!rtc.isJoined">
-        <app-stream (emitLeaveChannel)="leaveCall()"></app-stream>
+        <app-stream (emitLeaveChannel)="leaveCall()" (emitmicToggle)="emitmicToggle()" (emitcamToggle)="emitcamToggle()" [video]="video" [audio]="audio"></app-stream>
     </div>
 </div>

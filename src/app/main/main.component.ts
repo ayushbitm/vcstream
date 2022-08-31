@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
   public join_stream = {
     appId: "b0b58b051ab648d8898deb5cb66a1ac0",
     channel: "test",
-    token: "007eJxTYJCutOZRFT7dLhSbvoErqV37wJPnr9juvtseNHVL9GuWh7UKDEkGSaYWSQamholJZiYWKRYWlhYpqUmmyUlmZomGickGFtt4k3ew8yeL9OawMDJAIIjPwlCSWlzCwAAACe8fPQ==",
+    token: "007eJxTYOhX2a2UzFxZvdcjvcfMu/6OAY/IGveFiXI2P/Py/7X2xigwJBkkmVokGZgaJiaZmVikWFhYWqSkJpkmJ5mZJRomJhvce86XHGspkPz12D5GRgYIBPFZGEpSi0sYGADNrB+E",
     uid: 123456,
   };
 
@@ -35,7 +35,8 @@ export class MainComponent implements OnInit {
   }
 
   public remote_rtc  : IAgoraRTCRemoteUser[] = [];
-  // public clie : IUser 
+  public audio =true;
+  public video =true;
 
   async joinChannel() {
     await this.rtc.joinChannel(this.join_stream.appId, this.join_stream.channel, this.join_stream.token);
@@ -107,7 +108,33 @@ export class MainComponent implements OnInit {
     this.rtc.isJoined = false;
     await this.rtc.client.leave();
   }
+
+  public emitmicToggle(){
+    if(this.audio)
+    {
+      this.rtc.localAudioTrack.setEnabled(false);
+      this.audio=false;
+    }
+    else{
+      this.rtc.localAudioTrack.setEnabled(true);
+      this.audio=true;
+    }
+  }
+
+  public emitcamToggle(){
+    if(this.video)
+    {
+      this.rtc.localVideoTrack.setEnabled(false);
+      this.video=false;
+    }
+    else{
+      this.rtc.localVideoTrack.setEnabled(true);
+      this.video=true;
+    }
+  }
 }
+
+  
 
 //TODO : create CameraVideoTrack => is an interface for the video captured by a local camera and adds several camera-related functions.
 //AgoraRTC.createCameraVideoTrack.
