@@ -33,7 +33,7 @@ export class gstream {
     public listenRemoteEvents() {
         this.client.on("user-published", async (user, mediaType) => {
           await this.client.subscribe(user, mediaType);
-          console.log("hello userp user ",user.uid);
+          console.log("hello userp user ",user);
           // console.log("hello userp sc" , this.screen_stream.screen_uid);
           if(!this.screen_stream || user.uid !== this.screen_stream.screen_uid){
              // Subscribe to a remote user.
@@ -73,9 +73,18 @@ export class gstream {
     
         })
         this.client.on('user-left', (user: IAgoraRTCRemoteUser, reason: string) => {
+          console.log("hello",user);
     
         })
-    
+        // this.client.on("live-streaming-error", (url: string, err: any) =>{
+        //   console.log("hello",url ,err);
+        // })
+        this.client.on("user-info-updated", async (uid: any, msg: string) => {
+          console.log("hello",uid ,msg);
+          // this.userInfoUpdated.next({ uid: uid, msg: msg });
+        });
+        
+
       }
 
 }

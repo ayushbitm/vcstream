@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import AgoraRTC, { IAgoraRTCClient, IAgoraRTCRemoteUser, ICameraVideoTrack, IMicrophoneAudioTrack } from "agora-rtc-sdk-ng"
+import { Subscription, timer } from 'rxjs';
 import { gstream } from '../gstream';
 import { sstream } from '../sstream';
 
@@ -42,6 +43,8 @@ export class MainComponent implements OnInit {
   public video =true;
   public screenSharing =false;
 
+  public timersub !: Subscription;
+
   async joinChannel() {
     await this.rtc.joinChannel(this.join_stream.appId, this.join_stream.channel, this.join_stream.token);
   }
@@ -51,7 +54,17 @@ export class MainComponent implements OnInit {
       this.screen_rtc= new sstream();
       this.rtc.screen_stream =this.screen_rtc;
       await this.screen_rtc.screenShare(this.join_stream.appId,this.join_stream.channel,this.join_stream.token);
+
+      this.timersub = timer(1000,500).subscribe(() => {
+          const val = this.screen_rtc.screenvideoTrack.isPlaying;
+          if(val == false && this.screenSharing !=false)
+          {
+            this.closeScreenShare();
+            this.screenSharing =false;
+          }
+      })
       this.screenSharing=true
+
     }
     else
     {
@@ -68,7 +81,7 @@ export class MainComponent implements OnInit {
     await this.screen_rtc.client.leave();
     const playerContainer = document.getElementById("screen_sharing");
     playerContainer && playerContainer.remove();
-
+    this.timersub.unsubscribe()
   }
 
   async leaveCall() {
@@ -106,7 +119,17 @@ export class MainComponent implements OnInit {
       this.rtc.localVideoTrack.setEnabled(true);
       this.video=true;
     }
+    // this.screen_rtc.screenvideoTrack. = () => { // Click on browser UI stop sharing button
+    //   console.info("Recording has ended");
+    // };
+  
   }
+  // stream.getVideoTracks()[0].onended = function () {
+  //   // doWhatYouNeedToDo();
+  // };
+  
+ 
+
 }
 
   
