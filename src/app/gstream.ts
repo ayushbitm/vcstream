@@ -58,8 +58,8 @@ export class gstream {
     
         this.client.on("user-unpublished", (user) => {
           console.log("hello user unpublished ",user);
-          const playerContainer = document.getElementById("remote_stream_"+user.uid);
-          playerContainer?.remove();
+          // const playerContainer = document.getElementById("remote_stream_"+user.uid);
+          // playerContainer?.remove();
         });
     
         this.client.on("user-joined" ,async  (user : IAgoraRTCRemoteUser)  =>{
@@ -74,6 +74,8 @@ export class gstream {
         })
         this.client.on('user-left', (user: IAgoraRTCRemoteUser, reason: string) => {
           console.log("hello",user);
+          const playerContainer = document.getElementById("remote_stream_"+user.uid);
+          playerContainer?.remove();
     
         })
         // this.client.on("live-streaming-error", (url: string, err: any) =>{

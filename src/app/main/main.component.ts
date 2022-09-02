@@ -109,14 +109,19 @@ export class MainComponent implements OnInit {
     }
   }
 
-  public emitcamToggle(){
+  public async emitcamToggle(){
     if(this.video)
     {
-      this.rtc.localVideoTrack.setEnabled(false);
+      console.log("hello",this.video);
+     
+      await this.rtc.client.unpublish(this.rtc.localVideoTrack);
+      // this.rtc.localVideoTrack.setEnabled(false);
       this.video=false;
     }
     else{
-      this.rtc.localVideoTrack.setEnabled(true);
+      console.log("hello",this.video);
+      await this.rtc.client.publish(this.rtc.localVideoTrack);
+      // this.rtc.localVideoTrack.setEnabled(true);
       this.video=true;
     }
     // this.screen_rtc.screenvideoTrack. = () => { // Click on browser UI stop sharing button
