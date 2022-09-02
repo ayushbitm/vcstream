@@ -3,12 +3,18 @@
         <div id="local_stream" class="">
 
         </div>
-        <div id="remote_stream" class="">
+        <div id="screen_streaming" class="remote_streaming">
+            
+        </div>
+        <div *ngFor="let id of remote" >
+            <div id="remote_stream_{{id}}" class="remote_streaming">
 
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-center mt-5">
         <button (click)="leave();" class="btn btn-danger px-4 mx-4">leave</button>
+        <button (click)="screenShare();" class="btn px-4 mx-4" [ngClass]="screenSharing == true ? 'btn-success' : 'btn-danger'">share screen</button>
         <button (click)="micToggle();" class="btn px-4 mx-4" [ngClass]="audio == true ? 'btn-danger' : 'btn-success'">mic</button>
         <button (click)="camToggle();" class="btn px-4 mx-4" [ngClass]="video == true ? 'btn-danger' : 'btn-success'">cam</button>
     </div>

@@ -7,7 +7,7 @@
     width: 480px;
 }
 
-#remote_stream{
+.remote_streaming{
     height: 320px;
     width: 480px;
     transform: rotateY(180deg); 

@@ -10,10 +10,12 @@ export class StreamComponent implements OnInit {
   @Output() emitLeaveChannel = new EventEmitter();
   @Output() emitmicToggle =new EventEmitter();
   @Output() emitcamToggle =new EventEmitter();
+  @Output() emitScreenShare =new EventEmitter();
 
   @Input() audio !: boolean;
   @Input() video !: boolean;
-
+  @Input() screenSharing !: boolean;
+  @Input() remote :any;
 
   constructor() { }
 
@@ -30,5 +32,9 @@ export class StreamComponent implements OnInit {
   
   camToggle(){
     this.emitcamToggle.emit();
+  }
+
+  screenShare(){
+    this.emitScreenShare.emit();
   }
 }
