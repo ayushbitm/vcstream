@@ -6,9 +6,11 @@
         <div [hidden]="!screenSharing" id="screen_streaming" class="remote_streaming">
             
         </div>
-        <div *ngFor="let id of remote" class="row">
+        <div  *ngFor="let id of remote" class="row">
             <ng-container class="col">
-                <div id="remote_stream_{{id}}" class="remote_streaming" ></div>
+                <div id="remote_stream_{{id}}" class="remote_streaming" >
+
+                </div>
             </ng-container>
         </div>
     </div>
