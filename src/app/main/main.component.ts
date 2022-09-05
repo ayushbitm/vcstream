@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import AgoraRTC, { IAgoraRTCClient, IAgoraRTCRemoteUser, ICameraVideoTrack, IMicrophoneAudioTrack } from "agora-rtc-sdk-ng"
 import { Subscription, timer } from 'rxjs';
@@ -97,14 +98,18 @@ export class MainComponent implements OnInit {
     await this.rtc.client.leave();
   }
 
-  public emitmicToggle(){
+  public async emitmicToggle(){
     if(this.audio)
     {
-      this.rtc.localAudioTrack.setEnabled(false);
+      await this.rtc.client.unpublish(this.rtc.localAudioTrack);
+      this.rtc.localAudioTrack.close();
       this.audio=false;
     }
     else{
-      this.rtc.localAudioTrack.setEnabled(true);
+      // this.rtc.localAudioTrack.setEnabled(true);
+      this.rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+      await this.rtc.client.publish(this.rtc.localAudioTrack);
+
       this.audio=true;
     }
   }
@@ -112,16 +117,20 @@ export class MainComponent implements OnInit {
   public async emitcamToggle(){
     if(this.video)
     {
-      console.log("hello",this.video);
-     
       await this.rtc.client.unpublish(this.rtc.localVideoTrack);
+      this.rtc.localVideoTrack.close();
+      // console.log("hello",this.video);     
       // this.rtc.localVideoTrack.setEnabled(false);
       this.video=false;
     }
     else{
       console.log("hello",this.video);
-      await this.rtc.client.publish(this.rtc.localVideoTrack);
       // this.rtc.localVideoTrack.setEnabled(true);
+      this.rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack({
+        encoderConfig: "720p",
+      });
+      await this.rtc.client.publish(this.rtc.localVideoTrack);
+      this.rtc.localVideoTrack.play("local_stream");
       this.video=true;
     }
     // this.screen_rtc.screenvideoTrack. = () => { // Click on browser UI stop sharing button

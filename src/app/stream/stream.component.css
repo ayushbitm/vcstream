@@ -5,11 +5,17 @@
 #local_stream{
     height: 320px;
     width: 480px;
+    background-color:  black;
 }
 
 .remote_streaming{
     height: 320px;
     width: 480px;
     transform: rotateY(180deg); 
+    background-color:  black;
+}
+.remote_screen_streaming{
+    height: 320px;
+    width: 480px;
 }
 
