@@ -1,0 +1,12 @@
+#local_test {
+    height: 320px;
+    width: 480px;
+    background-color: black;
+    border-radius: 12px;
+    border: 1px solid darkgrey;
+    /* border-radius: 12px; */
+
+}
+.local_stream_relocate_border_rounded {
+    border-radius: 12px;
+}

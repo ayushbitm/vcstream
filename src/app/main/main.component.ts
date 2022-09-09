@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
   public join_stream = {
     appId: "b0b58b051ab648d8898deb5cb66a1ac0",
     channel: "test",
-    token: "007eJxTYHBuD/woaWgntPiP6U4ll/1T5Ram6zNr/XN4e4VJYPo0zSIFhiSDJFOLJANTw8QkMxOLFAsLS4uU1CTT5CQzs0TDxGQD7X7R5NUPxJJPzvnHwsgAgSA+C0NJanEJAwMAwmkgDA==",
+    token: "007eJxTYMiYN0/5Y0xC3KOTXSF3IjrrF2jMNeE7u750n+zEoik/OJYqMCQZJJlaJBmYGiYmmZlYpFhYWFqkpCaZJieZmSUaJiYbnDwllewpI5PcqS7EwsgAgSA+C0NJanEJAwMAiLAgBw==",
     uid: 123456,
   };
 
@@ -46,8 +46,10 @@ export class MainComponent implements OnInit {
 
   public timersub !: Subscription;
 
-  async joinChannel() {
-    await this.rtc.joinChannel(this.join_stream.appId, this.join_stream.channel, this.join_stream.token);
+  async joinChannel(event: { audio: boolean; video: boolean;}) {
+    await this.rtc.joinChannel(this.join_stream.appId, this.join_stream.channel, this.join_stream.token,event.audio,event.video);
+    this.audio=event.audio;
+    this.video=event.video;
   }
 
   public async emitScreenShare(){

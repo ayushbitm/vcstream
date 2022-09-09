@@ -1,23 +1,16 @@
-<div class="bg-dark" id="outer-screen">
-    <div class="py-4 d-flex justify-content-around">
-        <div id="local_stream" class="">
-
-        </div>
-        <div [hidden]="!screenSharing" id="screen_streaming" class="remote_screen_streaming">
-            
-        </div>
-        <div  *ngFor="let id of remote" class="row">
-            <ng-container class="col">
-                <div id="remote_stream_{{id}}" class="remote_streaming" >
+<div class="bg-dark w-100 h-100 px-3 py-3" id="outer-screen">
+    <div class="py-4">
+        <div id="local_stream" class="px-2 py-2 local_stream_relocate_border mx-auto" [ngClass]="remote.length >=1 ? 'local_stream_userg2 local_stream_relocate' : 'local_stream_user_full'"></div>
+        <div id="remote_layout" class="h-100 ">
+            <div [hidden]="!screenSharing" id="screen_streaming" class="remote_screen_streaming"></div>
+            <ng-container *ngFor="let id of remote">
+                <div id="remote_stream_{{id}}" class="remote_streaming local_stream_relocate_border px-2 py-2 " [ngClass]="{'mx-auto': remote.length == 1,'local_stream_user_full': remote.length >=1,'remote_layout_lower_width' : remote.length >= 2 , 'remote_layout_lower_not_first ' : remote.length >= 3}">
 
                 </div>
             </ng-container>
         </div>
     </div>
-    <div class="d-flex justify-content-center mt-5">
-        <button (click)="leave();" class="btn btn-danger px-4 mx-4">leave</button>
-        <button (click)="screenShare();" class="btn px-4 mx-4" [ngClass]="screenSharing == true ? 'btn-success' : 'btn-danger'">share screen</button>
-        <button (click)="micToggle();" class="btn px-4 mx-4" [ngClass]="audio == true ? 'btn-danger' : 'btn-success'">mic</button>
-        <button (click)="camToggle();" class="btn px-4 mx-4" [ngClass]="video == true ? 'btn-danger' : 'btn-success'">cam</button>
-    </div>
 </div>
+
+<!-- remote_streaming_relocate -->
+<!-- , 'remote_layout_lower_width local_stream_userl2' : remote.length == 2 -->

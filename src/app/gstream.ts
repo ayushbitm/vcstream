@@ -13,18 +13,26 @@ export class gstream {
 
     constructor() {
         this.client = AgoraRTC.createClient({ mode: "rtc", codec: "h264" });
-        this.listenRemoteEvents();
+        // this.listenRemoteEvents();
     }
 
-    async joinChannel(appId : any, channel : any, token :any ) {
+    async joinChannel(appId : any, channel : any, token :any , audio :any ,video :any ) {
+        this.listenRemoteEvents();
         const uid = await this.client.join(appId, channel, token);
         console.log("hello",uid);
+        if(audio)
         this.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+        if(video)
         this.localVideoTrack = await AgoraRTC.createCameraVideoTrack({
           encoderConfig: "720p",
         });
-        await this.client.publish([this.localAudioTrack, this.localVideoTrack]);
-        this.localVideoTrack.play("local_stream");
+        if(audio)
+        await this.client.publish(this.localAudioTrack);
+        if(video){
+          await this.client.publish(this.localVideoTrack);
+          // await this.client.publish([this.localAudioTrack, this.localVideoTrack]);
+          this.localVideoTrack.play("local_stream");
+        }
         console.log("publish success!");
         this.isJoined = true;
         // this.listenRemoteEvents();
@@ -76,11 +84,12 @@ export class gstream {
           console.log("hello",user);
           const playerContainer = document.getElementById("remote_stream_"+user.uid);
           playerContainer?.remove();
+          this.remote_rtc.forEach( (item, index) => {
+            if(item === user.uid) this.remote_rtc.splice(index,1);
+          });
+        
     
         })
-        // this.client.on("live-streaming-error", (url: string, err: any) =>{
-        //   console.log("hello",url ,err);
-        // })
         this.client.on("user-info-updated", async (uid: any, msg: string) => {
           console.log("hello",uid ,msg);
           // this.userInfoUpdated.next({ uid: uid, msg: msg });

@@ -7,13 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class StreamComponent implements OnInit {
 
-  @Output() emitLeaveChannel = new EventEmitter();
-  @Output() emitmicToggle =new EventEmitter();
-  @Output() emitcamToggle =new EventEmitter();
-  @Output() emitScreenShare =new EventEmitter();
+  // @Output() emitLeaveChannel = new EventEmitter();
+  // @Output() emitmicToggle =new EventEmitter();
+  // @Output() emitcamToggle =new EventEmitter();
+  // @Output() emitScreenShare =new EventEmitter();
 
-  @Input() audio !: boolean;
-  @Input() video !: boolean;
+  // @Input() audio !: boolean;
+  // @Input() video !: boolean;
   @Input() screenSharing !: boolean;
   @Input() remote :any;
 
@@ -22,19 +22,19 @@ export class StreamComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  leave(){
-    this.emitLeaveChannel.emit();
-  }
+  // leave(){
+  //   this.emitLeaveChannel.emit();
+  // }
 
-  micToggle(){
-    this.emitmicToggle.emit();
-  }
+  // micToggle(){
+  //   this.emitmicToggle.emit();
+  // }
   
-  camToggle(){
-    this.emitcamToggle.emit();
-  }
+  // camToggle(){
+  //   this.emitcamToggle.emit();
+  // }
 
-  screenShare(){
-    this.emitScreenShare.emit();
-  }
+  // screenShare(){
+  //   this.emitScreenShare.emit();
+  // }
 }

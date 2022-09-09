@@ -1,8 +1,9 @@
 <div class="bg-dark " id="main_screen">
     <div *ngIf="!rtc.isJoined" >
-        <app-check-device (emitJoinChannel)="joinChannel()"></app-check-device>
+        <app-check-device (emitJoinChannel)="joinChannel($event)"></app-check-device>
     </div>
     <div [hidden]="!rtc.isJoined">
-        <app-stream (emitLeaveChannel)="leaveCall()" (emitmicToggle)="emitmicToggle()" (emitcamToggle)="emitcamToggle()" [video]="video" [audio]="audio" [remote]="rtc.remote_rtc" [screenSharing]="screenSharing" (emitScreenShare)="emitScreenShare()"></app-stream>
+        <app-stream class=" modal-body" [remote]="rtc.remote_rtc"  [screenSharing]="screenSharing" ></app-stream>
+        <app-footer class="w-100 h-100 modal-footer d-flex justify-content-center" (emitLeaveChannel)="leaveCall()" (emitmicToggle)="emitmicToggle()" (emitcamToggle)="emitcamToggle()" [video]="video" [audio]="audio"  [screenSharing]="screenSharing" (emitScreenShare)="emitScreenShare()"></app-footer>
     </div>
 </div>

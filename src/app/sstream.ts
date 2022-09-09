@@ -6,6 +6,7 @@ export class sstream{
     public screenvideoTrack !: ILocalVideoTrack;
     public screenAudioTrack !: ILocalAudioTrack;
     public client!: IAgoraRTCClient;
+    // public cc !: IAg;
     public screen_uid :any;
     public screen_share_track !: [ILocalVideoTrack,ILocalAudioTrack] | ILocalVideoTrack;
 
