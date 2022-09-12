@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
   public join_stream = {
     appId: "b0b58b051ab648d8898deb5cb66a1ac0",
     channel: "test",
-    token: "007eJxTYMiYN0/5Y0xC3KOTXSF3IjrrF2jMNeE7u750n+zEoik/OJYqMCQZJJlaJBmYGiYmmZlYpFhYWFqkpCaZJieZmSUaJiYbnDwllewpI5PcqS7EwsgAgSA+C0NJanEJAwMAiLAgBw==",
+    token: "007eJxTYJg4VYnnPtfZXmn9I60HbSIcqvjZDZUZhLdv2z17aYu9+mUFhiSDJFOLJANTw8QkMxOLFAsLS4uU1CTT5CQzs0TDxGQDi/tyyTsMFJLFmt8zMEIhiM/CUJJaXMLAAAB9Gh30",
     uid: 123456,
   };
 

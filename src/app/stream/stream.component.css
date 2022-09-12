@@ -45,6 +45,14 @@
     break-inside: avoid;
 }
 
+.remote_stream_relocate {
+    bottom: 40px !important;
+    position: absolute;
+    z-index: 1;
+    right: 30px;
+    bottom: 30px;
+}
+
 .remote_screen_streaming {
     height: 320px;
     width: 480px;
